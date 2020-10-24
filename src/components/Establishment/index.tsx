@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Alert, Button, View } from "react-native";
+import { Button, View } from "react-native";
 
 import EstablishmentService, {
   EstablishmentProps,
@@ -45,6 +45,8 @@ const Establishment: React.FC<EstablishmentParams> = ({ place }) => {
     getEstablishmentInfo();
   }, [place]);
 
+  // 1:05:32 <== Parei aqui!!!
+
   return (
     <Container>
       {establishment && (
@@ -52,7 +54,7 @@ const Establishment: React.FC<EstablishmentParams> = ({ place }) => {
           <ButtonContainer>
             <Button
               title="x"
-              color="white"
+              color="black"
               onPress={() => setEstablishment(undefined)}
             />
           </ButtonContainer>
