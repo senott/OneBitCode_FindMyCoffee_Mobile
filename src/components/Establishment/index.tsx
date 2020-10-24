@@ -5,6 +5,7 @@ import EstablishmentService, {
   EstablishmentProps,
 } from "../../services/EstablishmentService";
 import { GOOGLE_API_KEY } from "../../../vars";
+import ListRatings from "../ListRatings";
 
 import noPhoto from "../../images/no_photo-1.jpg";
 
@@ -95,8 +96,15 @@ const Establishment: React.FC<EstablishmentParams> = ({ place }) => {
                 </ScheduleText>
               </View>
             )}
-            <Separator />
-            <ScheduleText>{establishment.formatted_address}</ScheduleText>
+            <View>
+              <Separator />
+
+              <ScheduleText>{establishment.formatted_address}</ScheduleText>
+
+              <Separator />
+
+              <ListRatings place={establishment} />
+            </View>
           </ScrollView>
           <Footer>
             <FooterText>Café selecionado</FooterText>

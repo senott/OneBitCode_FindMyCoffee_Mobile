@@ -15,6 +15,7 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
     "react-native-maps": "^0.27.1",
+    "react-native-star-rating": "^1.1.0",
     "react-native-web": "~0.13.12",
     "styled-components": "^5.2.0"
   },
@@ -24,6 +25,7 @@
     "@types/react": "~16.9.35",
     "@types/react-dom": "~16.9.8",
     "@types/react-native": "~0.63.2",
+    "@types/react-native-star-rating": "^1.1.1",
     "@types/styled-components": "^5.1.4",
     "typescript": "~3.9.5"
   },

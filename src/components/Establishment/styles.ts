@@ -5,7 +5,6 @@ export const Container = styled.View`
   position: absolute;
   top: 40px;
   z-index: 1;
-  flex: 1;
   width: 80%;
   align-self: center;
 `;
@@ -14,10 +13,12 @@ export const EstablishmentContainer = styled.View`
   background-color: black;
   padding: 20px 30px;
   border-radius: 20px;
+  flex: 1;
 `;
 
 export const ScrollView = styled.ScrollView`
   height: 600px;
+  flex: 1;
 `;
 
 export const ButtonContainer = styled.View`
