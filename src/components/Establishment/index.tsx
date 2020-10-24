@@ -4,6 +4,9 @@ import { Alert, Button, View } from "react-native";
 import EstablishmentService, {
   EstablishmentProps,
 } from "../../services/EstablishmentService";
+import { GOOGLE_API_KEY } from "../../../vars";
+
+import noPhoto from "../../images/no_photo-1.jpg";
 
 import {
   Container,
@@ -39,7 +42,6 @@ const Establishment: React.FC<EstablishmentParams> = ({ place }) => {
   }, [place]);
 
   useEffect(() => {
-    Alert.alert("Abriu essa xonga!");
     getEstablishmentInfo();
   }, [place]);
 
@@ -59,11 +61,11 @@ const Establishment: React.FC<EstablishmentParams> = ({ place }) => {
             {establishment.photos ? (
               <Photo
                 source={{
-                  uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${establishment.photos[0].photo_reference}&sensor=false&key=SUA_GOOGLE_KEY_API`,
+                  uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${establishment.photos[0].photo_reference}&sensor=false&key=${GOOGLE_API_KEY}`,
                 }}
               />
             ) : (
-              <Photo source={{ uri: require("../../images/no_photo-1.jpg") }} />
+              <Photo source={noPhoto} />
             )}
 
             <Title>{establishment.name}</Title>
@@ -91,6 +93,8 @@ const Establishment: React.FC<EstablishmentParams> = ({ place }) => {
                 </ScheduleText>
               </View>
             )}
+            <Separator />
+            <ScheduleText>{establishment.formatted_address}</ScheduleText>
           </ScrollView>
           <Footer>
             <FooterText>Café selecionado</FooterText>

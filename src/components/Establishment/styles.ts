@@ -12,7 +12,7 @@ export const Container = styled.View`
 
 export const EstablishmentContainer = styled.View`
   background-color: black;
-  padding-top: 20px;
+  padding: 20px 30px;
   border-radius: 20px;
 `;
 
@@ -27,6 +27,7 @@ export const ButtonContainer = styled.View`
 export const Photo = styled.Image`
   height: 200px;
   width: 200px;
+  align-self: center;
 `;
 
 export const Title = styled.Text`
@@ -36,7 +37,7 @@ export const Title = styled.Text`
 `;
 
 export const Separator = styled.View`
-  margin: 0 8px;
+  margin: 10px 0;
   border-bottom-color: white;
   border-bottom-width: ${StyleSheet.hairlineWidth}px;
 `;

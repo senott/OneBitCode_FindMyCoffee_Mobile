@@ -19,9 +19,6 @@ export default function App() {
     undefined
   );
 
-  console.log(myLocationIcon);
-  console.log(coffeePinIcon);
-
   const loadCoffees = useCallback(() => {
     if (latitude !== 0 && longitude !== 0) {
       try {
