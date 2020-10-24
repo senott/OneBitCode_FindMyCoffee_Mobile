@@ -19,7 +19,8 @@ export interface StoreProps {
 }
 
 const StoreService = {
-  show: (google_place_id: string) => api.get(`/stores/${google_place_id}`)
+  show: (google_place_id: string) => api.get(`/stores/${google_place_id}`),
+  index: (latitude: number, longitude: number) => api.get('/stores', {params: {latitude, longitude}})
 }
 
 export default StoreService;

@@ -5,11 +5,12 @@ import * as Location from "expo-location";
 
 import EstablishmentService, {
   EstablishmentProps,
-} from "./src/services/EstablishmentService";
-import Establishment from "./src/components/Establishment";
+} from "./services/EstablishmentService";
+import Establishment from "./components/Establishment";
+import NearestCoffees from "./components/NearestCoffees";
 
-import myLocationIcon from "./src/images/my-location-pin-1.png";
-import coffeePinIcon from "./src/images/coffee-big-pin.png";
+import myLocationIcon from "./images/my-location-pin-1.png";
+import coffeePinIcon from "./images/coffee-big-pin.png";
 
 export default function App() {
   const [latitude, setLatitude] = useState(0);
@@ -55,6 +56,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <NearestCoffees latitude={latitude} longitude={longitude} />
       {selected && <Establishment place={selected} />}
       <MapView
         style={styles.map}
