@@ -1,13 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 
+import EstablishmentService, {
+  EstablishmentProps,
+} from "./src/services/EstablishmentService";
+import Establishment from "./src/components/Establishment";
+
 import myLocationIcon from "./src/images/my-location-pin-1.png";
+import coffeePinIcon from "./src/images/coffee-big-pin.png";
 
 export default function App() {
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
+  const [locations, setLocations] = useState<EstablishmentProps[]>([]);
+  const [selected, setSelected] = useState<EstablishmentProps | undefined>(
+    undefined
+  );
+
+  console.log(myLocationIcon);
+  console.log(coffeePinIcon);
+
+  const loadCoffees = useCallback(() => {
+    if (latitude !== 0 && longitude !== 0) {
+      try {
+        EstablishmentService.index({ latitude, longitude }).then((response) => {
+          setLocations(response.data.results);
+        });
+      } catch (error) {
+        setLocations([]);
+        Alert.alert(
+          "Ocorreu um erro ao buscar os cafés próximos, tente novamente."
+        );
+      }
+    }
+  }, [latitude, longitude]);
+
+  useEffect(() => {
+    loadCoffees();
+  }, [latitude, longitude]);
 
   useEffect(() => {
     (async () => {
@@ -26,6 +58,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      {selected && <Establishment place={selected} />}
       <MapView
         style={styles.map}
         region={{
@@ -38,8 +71,23 @@ export default function App() {
         <Marker
           title="Sua localização"
           coordinate={{ latitude, longitude }}
-          icon={myLocationIcon}
+          image={myLocationIcon}
         />
+        {locations &&
+          locations.map((location, index) => {
+            return (
+              <Marker
+                key={index}
+                title={location.name}
+                coordinate={{
+                  latitude: Number(location.geometry?.location.lat),
+                  longitude: Number(location.geometry?.location.lng),
+                }}
+                image={coffeePinIcon}
+                onPress={() => setSelected(location)}
+              />
+            );
+          })}
       </MapView>
     </View>
   );
